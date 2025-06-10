@@ -14,6 +14,7 @@ members = [
   "helix-parsec",
   "helix-stdx",
   "xtask",
+  "fuzz",
 ]
 
 default-members = [
@@ -35,6 +36,9 @@ inherits = "test"
 package.helix-core.opt-level = 2
 package.helix-tui.opt-level = 2
 package.helix-term.opt-level = 2
+
+[profile.bench]
+debug = true
 
 [workspace.dependencies]
 tree-house = { version = "0.2.0", default-features = false }

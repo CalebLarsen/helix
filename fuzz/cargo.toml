@@ -1,0 +1,39 @@
+[package]
+name = "helix-core-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+arc-swap = { version = "1.7.1" }
+anyhow = "1"
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "io-util", "io-std", "time", "process", "macros", "fs", "parking_lot"] }
+crossterm = { version = "0.28", features = ["event-stream"] }
+tokio-stream = "0.1"
+tempfile = "3.20.0"
+toml = "0.8"
+log = "0.4"
+
+[dependencies.helix-core]
+path = "../helix-core"
+
+[dependencies.helix-view]
+path = "../helix-view"
+
+[dependencies.helix-term]
+path = "../helix-term"
+features = ["integration", "git"]
+
+[dependencies.helix-loader]
+path = "../helix-loader"
+
+[[bin]]
+name = "fuzz_target_1"
+path = "fuzz_targets/fuzz_target_1.rs"
+test = false
+doc = false
+bench = false
